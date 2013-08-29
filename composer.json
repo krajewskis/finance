@@ -1,0 +1,14 @@
+{
+	"name": "SebastianKrajewski/HomeFinance",
+	"description": "Appliaction for manage home finances",
+	"minimum-stability": "stable",
+	"authors": [
+		{
+			"name": "Sebastian Krajewski",
+			"email": "krajewskis@op.pl"
+		}
+	],
+	"require": {
+		"phpunit/phpunit": "3.7.24"
+	}
+}
