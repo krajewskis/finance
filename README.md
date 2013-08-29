@@ -1,4 +1,4 @@
-finance
+Home Finance
 =======
 
-Appliaction for manage home finances
+Application for manage home finances
