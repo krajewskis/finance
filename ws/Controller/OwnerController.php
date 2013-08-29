@@ -9,7 +9,7 @@ use DTO\OwnerDTO;
  * @Controller
  * @Path (value="/owner")
  */
-class OwnerController {
+class OwnerController extends AbstractController {
 
 	private $service;
 
@@ -21,7 +21,7 @@ class OwnerController {
 	 * @RequestMapping (value = "/", method = POST)
 	 */
 	function create(OwnerDTO $dto) {
-		return $this->service->create($dto);
+		$this->service->create($dto);
 	}
 
 	/**
@@ -37,8 +37,17 @@ class OwnerController {
 	 */
 	function update(OwnerDTO $dto)
 	{
-		return $this->service->update($dto);
+		$this->service->update($dto);
 	}
+
+	/**
+	 * @RequestMapping (value = "/:id", method = DELETE)
+	 */
+	function delete($id)
+	{
+		$this->service->delete($id);
+	}
+
 	/**
 	 * @RequestMapping (value = "/", method = GET)
 	 */

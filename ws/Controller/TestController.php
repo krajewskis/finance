@@ -9,6 +9,7 @@
 
 namespace Controller;
 use DTO\TestDTO;
+use Framework\JSON;
 
 /**
  * @Controller
@@ -21,7 +22,7 @@ class TestController
 	 */
 	function create(TestDTO $dto)
 	{
-		return array('server' => $_SERVER, 'data' => $dto, 'method' => __METHOD__);
+		JSON::getInstance()->setMessage(array('server' => $_SERVER, 'method' => __METHOD__, 'params' => $dto));
 	}
 
 	/**
@@ -29,7 +30,10 @@ class TestController
 	 */
 	function read($id)
 	{
-		return array('server' => $_SERVER, 'data' => $id, 'method' => __METHOD__);
+		JSON::getInstance()->setMessage(array('server' => $_SERVER, 'method' => __METHOD__, 'params' => $id));
+		$dto = new TestDTO();
+		$dto->setId($id);
+		return $dto;
 	}
 
 	/**
@@ -37,7 +41,7 @@ class TestController
 	 */
 	function update(TestDTO $dto)
 	{
-		return array('server' => $_SERVER, 'data' => $dto, 'method' => __METHOD__);
+		JSON::getInstance()->setMessage(array('server' => $_SERVER, 'method' => __METHOD__, 'params' => $dto));
 	}
 
 	/**
@@ -45,7 +49,7 @@ class TestController
 	 */
 	function delete($id)
 	{
-		return array('server' => $_SERVER, 'data' => $id, 'method' => __METHOD__);
+		JSON::getInstance()->setMessage(array('server' => $_SERVER, 'method' => __METHOD__, 'params' => $id));
 	}
 
 	/**
@@ -53,6 +57,6 @@ class TestController
 	 */
 	function listAll()
 	{
-		return array('server' => $_SERVER, 'data' => null, 'method' => __METHOD__);
+		JSON::getInstance()->setMessage(array('server' => $_SERVER, 'method' => __METHOD__, 'params' => null));
 	}
 }

@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace Test\Model;
+namespace Test\DAO;
 
 use DAO\OwnerDAO;
 use Framework\DB;
@@ -22,10 +22,6 @@ class OwnerTest extends PHPUnit_Framework_TestCase
 	 */
 	private $db;
 	/**
-	 * @var EntityManager;
-	 */
-	private $em;
-	/**
 	 * @var OwnerDAO;
 	 */
 	private $dao;
@@ -38,7 +34,6 @@ class OwnerTest extends PHPUnit_Framework_TestCase
 	function setUp()
 	{
 		$this->db = DB::getInstance();
-		$this->em = new EntityManager('Model\Owner');
 		$this->dao = new OwnerDAO();
 	}
 

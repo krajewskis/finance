@@ -9,7 +9,9 @@
 
 namespace Test\Controller;
 
+use DTO\OwnerDTO;
 use Framework\DB;
+use Framework\CURL;
 use PHPUnit_Framework_TestCase;
 
 class OwnerControllerTest extends PHPUnit_Framework_TestCase
@@ -19,9 +21,14 @@ class OwnerControllerTest extends PHPUnit_Framework_TestCase
 	 * @var DB;
 	 */
 	private $db;
+	/**
+	 * @var CURL
+	 */
+	private $curl;
 
 	const ID = 1;
 	const EMAIL = 'EMAIL';
+	const EMAIL_ANOTHER = 'EMAIL_ANOTHER';
 	const PASSWORD = 'PASSWORD';
 	const PASSWORD_ANOTHER = 'PASSWORD_ANOTHER';
 
@@ -30,18 +37,57 @@ class OwnerControllerTest extends PHPUnit_Framework_TestCase
 	function setUp()
 	{
 		$this->db = DB::getInstance();
+		$this->curl = new CURL(self::URL);
 	}
 
-	function testOwner()
+	function testCRUD()
 	{
-		$ch = curl_init(self::URL);
-		$data = json_encode(array('email'=>self::EMAIL,'password'=>self::PASSWORD));
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$result = curl_exec($ch);
-		curl_close($ch);
-		print_r($result);
+		$dto = new OwnerDTO();
+		$dto->setEmail(self::EMAIL);
+		$dto->setPassword(self::PASSWORD);
+
+		$json = json_encode($dto);
+
+		$this->curl->doPost($json);
+
+		$data = $this->curl->getResultData();
+
+		$this->assertEquals(self::ID, $data->id);
+		$this->assertEquals(self::EMAIL, $data->email);
+		$this->assertEquals(null, $data->password);
+
+
+		$this->curl->doGetId(self::ID);
+
+		$data = $this->curl->getResultData();
+
+		$this->assertEquals(self::ID, $data->id);
+		$this->assertEquals(self::EMAIL, $data->email);
+		$this->assertEquals(null, $data->password);
+
+
+		$dto->setId(self::ID);
+		$dto->setEmail(self::EMAIL_ANOTHER);
+
+		$json = json_encode($dto);
+
+		$this->curl->doPut(self::ID, $json);
+
+		$data = $this->curl->getResultData();
+		$this->assertEquals(self::ID, $data->id);
+		$this->assertEquals(self::EMAIL_ANOTHER, $data->email);
+		$this->assertEquals(null, $data->password);
+
+
+		$this->curl->doRemove(self::ID);
+
+		$this->curl->doGetId(self::ID);
+
+		$data = $this->curl->getResultData();
+
+		$this->assertEquals(null, $data->id);
+		$this->assertEquals(null, $data->email);
+		$this->assertEquals(null, $data->password);
 	}
 
 	function tearDown()
@@ -50,5 +96,6 @@ class OwnerControllerTest extends PHPUnit_Framework_TestCase
 			DELETE FROM owner;
 			ALTER SEQUENCE owner_id_seq RESTART 1;
 		');
+		$this->curl->closeCurl();
 	}
 }

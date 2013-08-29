@@ -27,6 +27,7 @@ class OwnerServiceTest extends PHPUnit_Framework_TestCase
 
 	const ID = 1;
 	const EMAIL = 'EMAIL';
+	const EMAIL_ANOTHER = 'EMAIL_ANOTHER';
 	const PASSWORD = 'PASSWORD';
 	const PASSWORD_ANOTHER = 'PASSWORD_ANOTHER';
 
@@ -50,14 +51,15 @@ class OwnerServiceTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(self::ID, $dto->getId());
 		$this->assertEquals(self::EMAIL, $dto->getEmail());
 
-		$dto->setPassword(self::PASSWORD_ANOTHER);
+		$dto->setEmail(self::EMAIL_ANOTHER);
 		$this->service->update($dto);
 
 		$dto = $this->service->read(self::ID);
 		$this->assertEquals(self::ID, $dto->getId());
-		$this->assertEquals(self::EMAIL, $dto->getEmail());
+		$this->assertEquals(self::EMAIL_ANOTHER, $dto->getEmail());
 
-		$this->service->delete($dto);
+		$this->service->delete(self::ID);
+		$dto = $this->service->read(self::ID);
 		$this->assertEquals(null, $dto->getId());
 		$this->assertEquals(null, $dto->getEmail());
 		$this->assertEquals(null, $dto->getPassword());

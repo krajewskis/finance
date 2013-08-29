@@ -7,12 +7,11 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace Test\Model;
+namespace Test\DAO;
 
 
 use DAO\AccountDAO;
 use Framework\DB;
-use Framework\EntityManager;
 use Model\Account;
 use \PHPUnit_Framework_TestCase;
 
@@ -23,21 +22,17 @@ class AccountTest extends PHPUnit_Framework_TestCase
 	 */
 	private $db;
 	/**
-	 * @var EntityManager;
-	 */
-	private $em;
-	/**
 	 * @var AccountDAO;
 	 */
 	private $dao;
 
 	const ID = 1;
 	const NAME = 'ACCOUNT';
+	const NAME_ANOTHER = 'ACCOUNT_ANOTHER';
 
 	function setUp()
 	{
 		$this->db = DB::getInstance();
-		$this->em = new EntityManager('Model\Account');
 		$this->dao = new AccountDAO();
 		$this->db->query("INSERT INTO owner VALUES (1, 'temp','temp');");
 	}
@@ -48,6 +43,28 @@ class AccountTest extends PHPUnit_Framework_TestCase
 		$entity->setName(self::NAME);
 		$entity->setOwnerId(1);
 		$this->dao->persist($entity);
+
+		$this->assertEquals(self::ID, $entity->getId());
+		$this->assertEquals(self::NAME, $entity->getName());
+
+		$entity = $this->dao->findById(self::ID);
+
+		$this->assertEquals(self::ID, $entity->getId());
+		$this->assertEquals(self::NAME, $entity->getName());
+
+		$entity->setName(self::NAME_ANOTHER);
+
+		$entity = $this->dao->flush($entity);
+
+		$entity = $this->dao->findById(self::ID);
+
+		$this->assertEquals(self::ID, $entity->getId());
+		$this->assertEquals(self::NAME_ANOTHER, $entity->getName());
+
+		$this->dao->remove($entity);
+		$this->assertEquals(null, $entity->getId());
+		$this->assertEquals(null, $entity->getName());
+
 	}
 
 	function tearDown()

@@ -21,9 +21,23 @@ class OwnerService extends AbstractService
 		$this->mapper->entity($dto, $entity);
 
 		$entity->setPassword($this->cryptPassword($dto->getPassword()));
+		$dto->setPassword(null);
 
 		$this->dao->persist($entity);
 		$dto->setId($entity->getId());
+	}
+
+	function update(OwnerDTO $dto)
+	{
+		$entity = $this->dao->findById($dto->getId());
+		$this->mapper->entity($dto, $entity);
+
+		if (!is_null($dto->getPassword())) {
+			$entity->setPassword($this->cryptPassword($dto->getPassword()));
+			$dto->setPassword(null);
+		}
+
+		$this->dao->flush($entity);
 	}
 
 	function auth($email, $password)
