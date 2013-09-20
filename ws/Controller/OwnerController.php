@@ -13,21 +13,21 @@ class OwnerController extends AbstractController {
 
 	private $service;
 
-	function __construct() {
+	public function __construct() {
 		$this->service = new OwnerService;
 	}
 
 	/**
 	 * @RequestMapping (value = "/", method = POST)
 	 */
-	function create(OwnerDTO $dto) {
+	public function create(OwnerDTO $dto) {
 		$this->service->create($dto);
 	}
 
 	/**
 	 * @RequestMapping (value = "/:id", method = GET)
 	 */
-	function read($id)
+	public function read($id)
 	{
 		return $this->service->read($id);
 	}
@@ -35,7 +35,7 @@ class OwnerController extends AbstractController {
 	/**
 	 * @RequestMapping (value = "/:id", method = PUT)
 	 */
-	function update(OwnerDTO $dto)
+	public function update(OwnerDTO $dto)
 	{
 		$this->service->update($dto);
 	}
@@ -43,7 +43,7 @@ class OwnerController extends AbstractController {
 	/**
 	 * @RequestMapping (value = "/:id", method = DELETE)
 	 */
-	function delete($id)
+	public function delete($id)
 	{
 		$this->service->delete($id);
 	}
@@ -51,7 +51,7 @@ class OwnerController extends AbstractController {
 	/**
 	 * @RequestMapping (value = "/", method = GET)
 	 */
-	function listAll() {
+	public function listAll() {
 		return $this->service->listAll();
 	}
 

@@ -9,35 +9,35 @@ class AccountDTO extends AbstractDTO {
 	public $idParent;
 	public $name;
 
-	function setId($id) {
+	public function setId($id) {
 		$this->id = $id;
 	}
 
-	function getId() {
+	public function getId() {
 		return $this->id;
 	}
 
-	function setOwnerId($ownerId) {
+	public function setOwnerId($ownerId) {
 		$this->ownerId = $ownerId;
 	}
 
-	function getOwnerId() {
+	public function getOwnerId() {
 		return $this->ownerId;
 	}
 
-	function setIdParent($idParent) {
+	public function setIdParent($idParent) {
 		$this->idParent = $idParent;
 	}
 
-	function getIdParent() {
+	public function getIdParent() {
 		return $this->idParent;
 	}
 
-	function setName($name) {
+	public function setName($name) {
 		$this->name = $name;
 	}
 
-	function getName() {
+	public function getName() {
 		return $this->name;
 	}
 

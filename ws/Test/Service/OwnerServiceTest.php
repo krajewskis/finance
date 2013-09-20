@@ -31,13 +31,13 @@ class OwnerServiceTest extends PHPUnit_Framework_TestCase
 	const PASSWORD = 'PASSWORD';
 	const PASSWORD_ANOTHER = 'PASSWORD_ANOTHER';
 
-	function setUp()
+	public function setUp()
 	{
 		$this->db = DB::getInstance();
 		$this->service = new OwnerService();
 	}
 
-	function testCRUD()
+	public function testCRUD()
 	{
 		$dto = new OwnerDTO();
 		$dto->setEmail(self::EMAIL);
@@ -65,7 +65,7 @@ class OwnerServiceTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(null, $dto->getPassword());
 	}
 
-	function testEmailAndPasswordsChanging()
+	public function testEmailAndPasswordsChanging()
 	{
 		$dto = new OwnerDTO();
 		$dto->setEmail(self::EMAIL);
@@ -84,7 +84,7 @@ class OwnerServiceTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(false, $status);
 	}
 
-	function tearDown()
+	public function tearDown()
 	{
 		$this->db->query('
 			DELETE FROM owner;

@@ -6,7 +6,7 @@ use Model\Account;
 use DTO\AccountDTO;
 class AccountMapper extends AbstractMapper {
 
-	function dto(Account $entity) {
+	public function dto(Account $entity) {
 		$dto = new AccountDTO;
 		$dto->setId($entity->getId());
 		$dto->setOwnerId($entity->getOwnerId());
@@ -15,7 +15,7 @@ class AccountMapper extends AbstractMapper {
 		return $dto;
 	}
 
-	function entity(AccountDTO $dto, Account $entity) {
+	public function entity(AccountDTO $dto, Account $entity) {
 		$entity->setOwnerId($dto->getOwnerId());
 		$entity->setIdParent($dto->getIdParent());
 		$entity->setName($dto->getName());

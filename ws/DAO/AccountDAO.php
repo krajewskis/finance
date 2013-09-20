@@ -4,7 +4,7 @@ namespace DAO;
 
 class AccountDAO extends AbstractDAO {
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct('Model\Account');
 	}
 }

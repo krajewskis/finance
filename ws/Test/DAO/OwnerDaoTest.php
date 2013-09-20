@@ -31,13 +31,13 @@ class OwnerTest extends PHPUnit_Framework_TestCase
 	const PASSWORD = 'PASSWORD';
 	const PASSWORD_ANOTHER = 'PASSWORD_ANOTHER';
 
-	function setUp()
+	public function setUp()
 	{
 		$this->db = DB::getInstance();
 		$this->dao = new OwnerDAO();
 	}
 
-	function testCRUD()
+	public function testCRUD()
 	{
 		$entity = new Owner();
 		$entity->setEmail(self::EMAIL);
@@ -67,7 +67,7 @@ class OwnerTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(null, $entity->getPassword());
 	}
 
-	function tearDown()
+	public function tearDown()
 	{
 		$this->db->query('
 			DELETE FROM owner;

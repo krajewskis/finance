@@ -34,38 +34,38 @@ class Owner extends AbstractModel
 	 */
 	private $password;
 
-//	function __construct($email, $password)
+//	public function __construct($email, $password)
 //	{
 //		$this->email = $email;
 //		$this->password = $password;
 //	}
 
-	function setId($id)
+	public function setId($id)
 	{
 		$this->id = $id;
 	}
 
-	function getId()
+	public function getId()
 	{
 		return $this->id;
 	}
 
-	function setEmail($email)
+	public function setEmail($email)
 	{
 		$this->email = $email;
 	}
 
-	function getEmail()
+	public function getEmail()
 	{
 		return $this->email;
 	}
 
-	function setPassword($password)
+	public function setPassword($password)
 	{
 		$this->password = $password;
 	}
 
-	function getPassword()
+	public function getPassword()
 	{
 		return $this->password;
 	}

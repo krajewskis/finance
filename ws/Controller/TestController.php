@@ -20,7 +20,7 @@ class TestController
 	/**
 	 * @RequestMapping (value = "/", method = POST)
 	 */
-	function create(TestDTO $dto)
+	public function create(TestDTO $dto)
 	{
 		JSON::getInstance()->setMessage(array('server' => $_SERVER, 'method' => __METHOD__, 'params' => $dto));
 	}
@@ -28,7 +28,7 @@ class TestController
 	/**
 	 * @RequestMapping (value = "/:id", method = GET)
 	 */
-	function read($id)
+	public function read($id)
 	{
 		JSON::getInstance()->setMessage(array('server' => $_SERVER, 'method' => __METHOD__, 'params' => $id));
 		$dto = new TestDTO();
@@ -39,7 +39,7 @@ class TestController
 	/**
 	 * @RequestMapping (value = "/:id", method = PUT)
 	 */
-	function update(TestDTO $dto)
+	public function update(TestDTO $dto)
 	{
 		JSON::getInstance()->setMessage(array('server' => $_SERVER, 'method' => __METHOD__, 'params' => $dto));
 	}
@@ -47,7 +47,7 @@ class TestController
 	/**
 	 * @RequestMapping (value = "/:id", method = DELETE)
 	 */
-	function delete($id)
+	public function delete($id)
 	{
 		JSON::getInstance()->setMessage(array('server' => $_SERVER, 'method' => __METHOD__, 'params' => $id));
 	}
@@ -55,7 +55,7 @@ class TestController
 	/**
 	 * @RequestMapping (value = "/", method = GET)
 	 */
-	function listAll()
+	public function listAll()
 	{
 		JSON::getInstance()->setMessage(array('server' => $_SERVER, 'method' => __METHOD__, 'params' => null));
 	}

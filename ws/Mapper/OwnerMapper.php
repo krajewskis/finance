@@ -6,7 +6,7 @@ use Model\Owner;
 use DTO\OwnerDTO;
 class OwnerMapper extends AbstractMapper {
 
-	function dto(Owner $entity) {
+	public function dto(Owner $entity) {
 		$dto = new OwnerDTO;
 		$dto->setId($entity->getId());
 		$dto->setEmail($entity->getEmail());
@@ -14,7 +14,7 @@ class OwnerMapper extends AbstractMapper {
 		return $dto;
 	}
 
-	function entity(OwnerDTO $dto, Owner $entity) {
+	public function entity(OwnerDTO $dto, Owner $entity) {
 		$entity->setEmail($dto->getEmail());
 //		$entity->setPassword($dto->getPassword());
 	}

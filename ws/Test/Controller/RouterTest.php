@@ -22,17 +22,17 @@ class RouterTest extends PHPUnit_Framework_TestCase
 
 	const URL = 'http://localhost/finance/ws/';
 
-	function setUp()
+	public function setUp()
 	{
 		$this->curl = new CURL(self::URL);
 	}
 
-	function tearDown()
+	public function tearDown()
 	{
 		$this->curl->closeCurl();
 	}
 
-	function testConnection()
+	public function testConnection()
 	{
 		$this->curl->doGet();
 

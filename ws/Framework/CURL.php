@@ -20,24 +20,24 @@ class CURL
 	private $result;
 	private $info;
 
-	function __construct($url)
+	public function __construct($url)
 	{
 		$this->url = $url;
 	}
 
-	function doGet()
+	public function doGet()
 	{
 		$this->curl = curl_init($this->url);
 		$this->process();
 	}
 
-	function doGetId($id)
+	public function doGetId($id)
 	{
 		$this->curl = curl_init($this->url . $id);
 		$this->process();
 	}
 
-	function doPost($data)
+	public function doPost($data)
 	{
 		$this->curl = curl_init($this->url);
 		curl_setopt($this->curl, CURLOPT_POST, true);
@@ -45,7 +45,7 @@ class CURL
 		$this->process();
 	}
 
-	function doPut($id, $data)
+	public function doPut($id, $data)
 	{
 		$this->curl = curl_init($this->url . $id);
 		curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, 'PUT');
@@ -54,7 +54,7 @@ class CURL
 		$this->process();
 	}
 
-	function doRemove($id)
+	public function doRemove($id)
 	{
 		$this->curl = curl_init($this->url . $id);
 		curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, 'DELETE');
@@ -68,7 +68,7 @@ class CURL
 		$this->info = curl_getinfo($this->curl);
 	}
 
-	function closeCurl()
+	public function closeCurl()
 	{
 		curl_close($this->curl);
 	}

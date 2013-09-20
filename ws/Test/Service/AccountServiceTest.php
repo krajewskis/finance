@@ -29,14 +29,14 @@ class AccountTest extends PHPUnit_Framework_TestCase
 	const NAME = 'ACCOUNT';
 	const NAME_ANOTHER = 'ACCOUNT_ANOTHER';
 
-	function setUp()
+	public function setUp()
 	{
 		$this->db = DB::getInstance();
 		$this->service = new AccountService();
 		$this->db->query("INSERT INTO owner VALUES (1, 'temp','temp');");
 	}
 
-	function testCRUD()
+	public function testCRUD()
 	{
 		$dto = new AccountDTO();
 		$dto->setName(self::NAME);
@@ -66,7 +66,7 @@ class AccountTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(null, $dto->getName());
 	}
 
-	function tearDown()
+	public function tearDown()
 	{
 		$this->db->query('
 			DELETE FROM account;

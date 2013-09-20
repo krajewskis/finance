@@ -25,17 +25,17 @@ class TestControllerTest extends PHPUnit_Framework_TestCase
 	const ID = 1;
 	const STRING = 'STRING';
 
-	function setUp()
+	public function setUp()
 	{
 		$this->curl = new CURL(self::URL);
 	}
 
-	function tearDown()
+	public function tearDown()
 	{
 		$this->curl->closeCurl();
 	}
 
-	function testGet()
+	public function testGet()
 	{
 		$this->curl = new CURL(self::URL);
 		$this->curl->doGet();
@@ -47,19 +47,18 @@ class TestControllerTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals('GET', $result->message->server->REQUEST_METHOD);
 	}
 
-	function testGetId()
+	public function testGetId()
 	{
 		$this->curl->doGetId(self::ID);
 
 		$result = $this->curl->getResult();
-		print_r($result);
 
 		$this->assertEquals('Controller\TestController::read', $result->message->method);
 		$this->assertEquals(self::ID, $result->data->id);
 		$this->assertEquals('GET', $result->message->server->REQUEST_METHOD);
 	}
 
-	function testPost()
+	public function testPost()
 	{
 		$data = array('test' => self::STRING);
 		$data = json_encode($data);
@@ -73,7 +72,7 @@ class TestControllerTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals('POST', $result->message->server->REQUEST_METHOD);
 	}
 
-	function testPut()
+	public function testPut()
 	{
 		$data = array('test' => self::STRING);
 		$data = json_encode($data);
@@ -87,7 +86,7 @@ class TestControllerTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals('PUT', $result->message->server->REQUEST_METHOD);
 	}
 
-	function testDelete()
+	public function testDelete()
 	{
 		$this->curl->doRemove(self::ID);
 

@@ -13,21 +13,21 @@ class AccountController {
 
 	private $service;
 
-	function __construct() {
+	public function __construct() {
 		$this->service = new AccountService;
 	}
 
 	/**
 	 * @RequestMapping (value = "/", method = POST)
 	 */
-	function create(AccountDTO $dto) {
+	public function create(AccountDTO $dto) {
 		return $this->service->create($dto);
 	}
 
 	/**
 	 * @RequestMapping (value = "/:id", method = GET)
 	 */
-	function read($id)
+	public function read($id)
 	{
 		return $this->service->read($id);
 	}
@@ -35,14 +35,14 @@ class AccountController {
 	/**
 	 * @RequestMapping (value = "/:id", method = PUT)
 	 */
-	function update(AccountDTO $dto)
+	public function update(AccountDTO $dto)
 	{
 		return $this->service->update($dto);
 	}
 	/**
 	 * @RequestMapping (value = "/", method = GET)
 	 */
-	function listAll() {
+	public function listAll() {
 		return $this->service->listAll();
 	}
 

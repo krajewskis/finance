@@ -34,13 +34,13 @@ class OwnerControllerTest extends PHPUnit_Framework_TestCase
 
 	const URL = 'http://localhost/finance/ws/?/owner/';
 
-	function setUp()
+	public function setUp()
 	{
 		$this->db = DB::getInstance();
 		$this->curl = new CURL(self::URL);
 	}
 
-	function testCRUD()
+	public function testCRUD()
 	{
 		$dto = new OwnerDTO();
 		$dto->setEmail(self::EMAIL);
@@ -90,7 +90,7 @@ class OwnerControllerTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(null, $data->password);
 	}
 
-	function tearDown()
+	public function tearDown()
 	{
 		$this->db->query('
 			DELETE FROM owner;

@@ -10,12 +10,12 @@ use Model\Owner;
 class OwnerService extends AbstractService
 {
 
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct('Model\Owner', 'DTO\OwnerDTO', new OwnerDAO, new OwnerMapper);
 	}
 
-	function create(OwnerDTO $dto)
+	public function create(OwnerDTO $dto)
 	{
 		$entity = new $this->model;
 		$this->mapper->entity($dto, $entity);
@@ -27,7 +27,7 @@ class OwnerService extends AbstractService
 		$dto->setId($entity->getId());
 	}
 
-	function update(OwnerDTO $dto)
+	public function update(OwnerDTO $dto)
 	{
 		$entity = $this->dao->findById($dto->getId());
 		$this->mapper->entity($dto, $entity);
@@ -40,14 +40,14 @@ class OwnerService extends AbstractService
 		$this->dao->flush($entity);
 	}
 
-	function auth($email, $password)
+	public function auth($email, $password)
 	{
 		$entity = $this->dao->findByEmail($email);
 
 		return $entity instanceof Owner && crypt($password, $entity->getPassword()) == $entity->getPassword();
 	}
 
-	function changePassword($id, $password)
+	public function changePassword($id, $password)
 	{
 		$entity = $this->dao->findById($id);
 		$entity->setPassword($this->cryptPassword($password));

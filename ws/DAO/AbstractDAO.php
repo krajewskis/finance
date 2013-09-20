@@ -10,32 +10,32 @@ abstract class AbstractDAO
 
 	protected $em;
 
-	function __construct($model)
+	public function __construct($model)
 	{
 		$this->em = new EntityManager($model);
 	}
 
-	function persist(AbstractModel $entity)
+	public function persist(AbstractModel $entity)
 	{
 		$this->em->persist($entity);
 	}
 
-	function flush(AbstractModel $entity)
+	public function flush(AbstractModel $entity)
 	{
 		$this->em->flush($entity);
 	}
 
-	function findById($id)
+	public function findById($id)
 	{
 		return $this->em->findById($id);
 	}
 
-	function listAll()
+	public function listAll()
 	{
 		return $this->em->findBy(array());
 	}
 
-	function remove(AbstractModel &$entity)
+	public function remove(AbstractModel &$entity)
 	{
 		$this->em->remove($entity->getId());
 		$class = get_class($entity);

@@ -14,7 +14,7 @@ abstract class AbstractService
 	protected $dao;
 	protected $mapper;
 
-	function __construct($model, $dto, AbstractDAO $dao, AbstractMapper $mapper)
+	public function __construct($model, $dto, AbstractDAO $dao, AbstractMapper $mapper)
 	{
 		$this->model = $model;
 		$this->dto = $dto;
@@ -22,7 +22,7 @@ abstract class AbstractService
 		$this->mapper = $mapper;
 	}
 
-	function create(AbstractDTO $dto)
+	public function create(AbstractDTO $dto)
 	{
 		$entity = new $this->model;
 		$this->mapper->entity($dto, $entity);
@@ -30,7 +30,7 @@ abstract class AbstractService
 		$dto->setId($entity->getId());
 	}
 
-	function read($id)
+	public function read($id)
 	{
 		$entity = $this->dao->findById($id);
 		if (is_null($entity)) {
@@ -41,20 +41,20 @@ abstract class AbstractService
 		return $dto;
 	}
 
-	function update(AbstractDTO $dto)
+	public function update(AbstractDTO $dto)
 	{
 		$entity = $this->dao->findById($dto->getId());
 		$this->mapper->entity($dto, $entity);
 		$this->dao->flush($entity);
 	}
 
-	function delete($id)
+	public function delete($id)
 	{
 		$entity = $this->dao->findById($id);
 		$this->dao->remove($entity);
 	}
 
-	function listAll()
+	public function listAll()
 	{
 		$entities = $this->dao->listAll();
 		$dtos = $this->mapper->dtos($entities);
