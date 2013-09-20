@@ -10,7 +10,7 @@
 namespace Test\Controller;
 
 use Framework\CURL;
-use Framework\Router;
+use Framework\Application;
 use PHPUnit_Framework_TestCase;
 
 class TestControllerTest extends PHPUnit_Framework_TestCase

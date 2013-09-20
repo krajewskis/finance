@@ -10,7 +10,7 @@
 namespace Test\Controller;
 
 use Framework\CURL;
-use Framework\Router;
+use Framework\Application;
 use PHPUnit_Framework_TestCase;
 
 class RouterTest extends PHPUnit_Framework_TestCase
@@ -44,6 +44,6 @@ class RouterTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals(false, $result->success);
 		$this->assertEquals(400, $result->statusCode);
-		$this->assertEquals(Router::ERROR_WS_NOT_FOUND, $result->message);
+		$this->assertEquals(Application::ERROR_WS_NOT_FOUND, $result->message);
 	}
 }

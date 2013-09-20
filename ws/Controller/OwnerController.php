@@ -7,7 +7,7 @@ use DTO\OwnerDTO;
 
 /**
  * @Controller
- * @Path (value="/owner")
+ * @RequestMapping("/owner")
  */
 class OwnerController extends AbstractController {
 
@@ -18,14 +18,14 @@ class OwnerController extends AbstractController {
 	}
 
 	/**
-	 * @RequestMapping (value = "/", method = POST)
+	 * @RequestMapping(value = "/", method = POST)
 	 */
 	public function create(OwnerDTO $dto) {
 		$this->service->create($dto);
 	}
 
 	/**
-	 * @RequestMapping (value = "/:id", method = GET)
+	 * @RequestMapping(value = "/:id", method = GET)
 	 */
 	public function read($id)
 	{
@@ -33,7 +33,7 @@ class OwnerController extends AbstractController {
 	}
 
 	/**
-	 * @RequestMapping (value = "/:id", method = PUT)
+	 * @RequestMapping(value = "/:id", method = PUT)
 	 */
 	public function update(OwnerDTO $dto)
 	{
@@ -41,7 +41,7 @@ class OwnerController extends AbstractController {
 	}
 
 	/**
-	 * @RequestMapping (value = "/:id", method = DELETE)
+	 * @RequestMapping(value = "/:id", method = DELETE)
 	 */
 	public function delete($id)
 	{
@@ -49,7 +49,7 @@ class OwnerController extends AbstractController {
 	}
 
 	/**
-	 * @RequestMapping (value = "/", method = GET)
+	 * @RequestMapping(value = "/", method = GET)
 	 */
 	public function listAll() {
 		return $this->service->listAll();

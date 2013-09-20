@@ -13,12 +13,12 @@ use Framework\JSON;
 
 /**
  * @Controller
- * @Path (value="/test")
+ * @RequestMapping("/test")
  */
 class TestController
 {
 	/**
-	 * @RequestMapping (value = "/", method = POST)
+	 * @RequestMapping(value = "/", method = POST)
 	 */
 	public function create(TestDTO $dto)
 	{
@@ -26,7 +26,7 @@ class TestController
 	}
 
 	/**
-	 * @RequestMapping (value = "/:id", method = GET)
+	 * @RequestMapping(value = "/:id", method = GET)
 	 */
 	public function read($id)
 	{
@@ -37,7 +37,7 @@ class TestController
 	}
 
 	/**
-	 * @RequestMapping (value = "/:id", method = PUT)
+	 * @RequestMapping(value = "/:id", method = PUT)
 	 */
 	public function update(TestDTO $dto)
 	{
@@ -45,7 +45,7 @@ class TestController
 	}
 
 	/**
-	 * @RequestMapping (value = "/:id", method = DELETE)
+	 * @RequestMapping(value = "/:id", method = DELETE)
 	 */
 	public function delete($id)
 	{
@@ -53,7 +53,7 @@ class TestController
 	}
 
 	/**
-	 * @RequestMapping (value = "/", method = GET)
+	 * @RequestMapping(value = "/", method = GET)
 	 */
 	public function listAll()
 	{

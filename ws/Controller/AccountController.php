@@ -7,25 +7,28 @@ use DTO\AccountDTO;
 
 /**
  * @Controller
- * @Path (value="/account")
+ * @RequestMapping("/account")
  */
-class AccountController {
+class AccountController
+{
 
 	private $service;
 
-	public function __construct() {
+	public function __construct()
+	{
 		$this->service = new AccountService;
 	}
 
 	/**
-	 * @RequestMapping (value = "/", method = POST)
+	 * @RequestMapping(value = "/", method = POST)
 	 */
-	public function create(AccountDTO $dto) {
+	public function create(AccountDTO $dto)
+	{
 		return $this->service->create($dto);
 	}
 
 	/**
-	 * @RequestMapping (value = "/:id", method = GET)
+	 * @RequestMapping(value = "/:id", method = GET)
 	 */
 	public function read($id)
 	{
@@ -33,16 +36,18 @@ class AccountController {
 	}
 
 	/**
-	 * @RequestMapping (value = "/:id", method = PUT)
+	 * @RequestMapping(value = "/:id", method = PUT)
 	 */
 	public function update(AccountDTO $dto)
 	{
 		return $this->service->update($dto);
 	}
+
 	/**
-	 * @RequestMapping (value = "/", method = GET)
+	 * @RequestMapping(value = "/", method = GET)
 	 */
-	public function listAll() {
+	public function listAll()
+	{
 		return $this->service->listAll();
 	}
 

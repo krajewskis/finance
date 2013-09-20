@@ -9,7 +9,7 @@
 
 require_once 'autoload.php';
 
-use Framework\Router;
+use Framework\Application;
 
 error_reporting(E_ALL);
 ini_set('display_errors',true);
@@ -22,4 +22,4 @@ date_default_timezone_set('Europe/Prague');
 // register_shutdown_function(array( 'Framework/Error', 'captureShutdown' ));
 
 
-Router::Initialize();
+Application::Run();
