@@ -37,7 +37,7 @@ class Application
 	{
 		$foundWS = false;
 
-		if ($handle = opendir('Controller')) {
+		if ($handle = opendir(__DIR__.'/../Controller')) {
 
 			while (false !== ($file = readdir($handle))) {
 

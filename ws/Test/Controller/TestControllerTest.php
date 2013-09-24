@@ -20,7 +20,7 @@ class TestControllerTest extends PHPUnit_Framework_TestCase
 	 */
 	private $curl;
 
-	const URL = 'http://localhost/finance/ws/?/test';
+	const URL = 'http://localhost/finance/public/ws/?/test';
 
 	const ID = 1;
 	const STRING = 'STRING';

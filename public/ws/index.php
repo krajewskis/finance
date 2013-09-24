@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-require_once 'autoload.php';
+require_once '../../ws/autoload.php';
 
 use Framework\Application;
 

@@ -32,7 +32,7 @@ class OwnerControllerTest extends PHPUnit_Framework_TestCase
 	const PASSWORD = 'PASSWORD';
 	const PASSWORD_ANOTHER = 'PASSWORD_ANOTHER';
 
-	const URL = 'http://localhost/finance/ws/?/owner';
+	const URL = 'http://localhost/finance/public/ws/?/owner';
 
 	public function setUp()
 	{

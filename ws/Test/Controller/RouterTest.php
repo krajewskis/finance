@@ -20,7 +20,7 @@ class RouterTest extends PHPUnit_Framework_TestCase
 	 */
 	private $curl;
 
-	const URL = 'http://localhost/finance/ws/';
+	const URL = 'http://localhost/finance/public/ws/';
 
 	public function setUp()
 	{
@@ -32,6 +32,7 @@ class RouterTest extends PHPUnit_Framework_TestCase
 		$this->curl->doGet();
 
 		$result = $this->curl->getResult();
+
 		$info = $this->curl->getInfo();
 
 		$this->assertEquals('application/json', $info['content_type']);
