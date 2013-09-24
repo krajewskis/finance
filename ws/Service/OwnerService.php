@@ -40,12 +40,14 @@ class OwnerService extends AbstractService
 		$this->dao->flush($entity);
 	}
 
-	public function auth($email, $password)
-	{
-		$entity = $this->dao->findByEmail($email);
-
-		return $entity instanceof Owner && crypt($password, $entity->getPassword()) == $entity->getPassword();
-	}
+//	public function auth($email, $password)
+//	{
+//		$entity = $this->dao->findByEmail($email);
+//		if ($entity instanceof Owner && crypt($password, $entity->getPassword()) == $entity->getPassword()) {
+//			$dto = $this->mapper->dto($entity);
+//			return $dto;
+//		}
+//	}
 
 	public function changePassword($id, $password)
 	{
