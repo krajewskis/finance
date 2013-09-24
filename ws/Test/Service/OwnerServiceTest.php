@@ -60,9 +60,9 @@ class OwnerServiceTest extends PHPUnit_Framework_TestCase
 
 		$this->service->delete(self::ID);
 		$dto = $this->service->read(self::ID);
-		$this->assertEquals(null, $dto->getId());
-		$this->assertEquals(null, $dto->getEmail());
-		$this->assertEquals(null, $dto->getPassword());
+		$this->assertNull($dto->getId());
+		$this->assertNull($dto->getEmail());
+		$this->assertNull($dto->getPassword());
 	}
 
 	public function testEmailAndPasswordsChanging()

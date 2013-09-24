@@ -62,8 +62,8 @@ class AccountTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(self::NAME_ANOTHER, $entity->getName());
 
 		$this->dao->remove($entity);
-		$this->assertEquals(null, $entity->getId());
-		$this->assertEquals(null, $entity->getName());
+		$this->assertNull($entity->getId());
+		$this->assertNull($entity->getName());
 
 	}
 

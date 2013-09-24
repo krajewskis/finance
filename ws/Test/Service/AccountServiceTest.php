@@ -62,8 +62,8 @@ class AccountTest extends PHPUnit_Framework_TestCase
 
 		$this->service->delete(self::ID);
 		$dto = $this->service->read(self::ID);
-		$this->assertEquals(null, $dto->getId());
-		$this->assertEquals(null, $dto->getName());
+		$this->assertNull($dto->getId());
+		$this->assertNull($dto->getName());
 	}
 
 	public function tearDown()

@@ -20,7 +20,7 @@ class TestControllerTest extends PHPUnit_Framework_TestCase
 	 */
 	private $curl;
 
-	const URL = 'http://localhost/finance/ws/?/test/';
+	const URL = 'http://localhost/finance/ws/?/test';
 
 	const ID = 1;
 	const STRING = 'STRING';
@@ -28,11 +28,6 @@ class TestControllerTest extends PHPUnit_Framework_TestCase
 	public function setUp()
 	{
 		$this->curl = new CURL(self::URL);
-	}
-
-	public function tearDown()
-	{
-		$this->curl->closeCurl();
 	}
 
 	public function testGet()
@@ -43,7 +38,7 @@ class TestControllerTest extends PHPUnit_Framework_TestCase
 		$result = $this->curl->getResult();
 
 		$this->assertEquals('Controller\TestController::listAll', $result->message->method);
-		$this->assertEquals(null, $result->data);
+		$this->assertNull($result->data);
 		$this->assertEquals('GET', $result->message->server->REQUEST_METHOD);
 	}
 
@@ -88,12 +83,12 @@ class TestControllerTest extends PHPUnit_Framework_TestCase
 
 	public function testDelete()
 	{
-		$this->curl->doRemove(self::ID);
+		$this->curl->doDelete(self::ID);
 
 		$result = $this->curl->getResult();
 
 		$this->assertEquals('Controller\TestController::delete', $result->message->method);
-		$this->assertEquals(null, $result->data);
+		$this->assertNull($result->data);
 		$this->assertEquals('DELETE', $result->message->server->REQUEST_METHOD);
 	}
 }

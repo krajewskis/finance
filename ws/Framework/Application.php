@@ -62,6 +62,7 @@ class Application
 									$requestMappingMethod = $matches[2];
 
 									$pattern = $requestMapping . $requestMappingValue;
+									$pattern = '/' . trim($pattern, '/');
 									$pattern = str_replace('/', '\/', $pattern);
 									$pattern = str_replace(':id', '([0-9]+)', $pattern);
 									$pattern = str_replace(':name', '([a-z]+)', $pattern);

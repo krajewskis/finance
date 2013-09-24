@@ -62,9 +62,9 @@ class OwnerTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(self::PASSWORD_ANOTHER, $entity->getPassword());
 
 		$this->dao->remove($entity);
-		$this->assertEquals(null, $entity->getId());
-		$this->assertEquals(null, $entity->getEmail());
-		$this->assertEquals(null, $entity->getPassword());
+		$this->assertNull($entity->getId());
+		$this->assertNull($entity->getEmail());
+		$this->assertNull($entity->getPassword());
 	}
 
 	public function tearDown()

@@ -27,11 +27,6 @@ class RouterTest extends PHPUnit_Framework_TestCase
 		$this->curl = new CURL(self::URL);
 	}
 
-	public function tearDown()
-	{
-		$this->curl->closeCurl();
-	}
-
 	public function testConnection()
 	{
 		$this->curl->doGet();

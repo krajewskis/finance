@@ -15,7 +15,6 @@ class CURL
 	private $url;
 	private $curl;
 	private $data;
-	private $method;
 
 	private $result;
 	private $info;
@@ -27,38 +26,47 @@ class CURL
 
 	public function doGet()
 	{
-		$this->curl = curl_init($this->url);
+		$this->init($this->url);
 		$this->process();
 	}
 
 	public function doGetId($id)
 	{
-		$this->curl = curl_init($this->url . $id);
+		$this->init($this->url . '/' . $id);
 		$this->process();
+		$this->close();
 	}
 
 	public function doPost($data)
 	{
-		$this->curl = curl_init($this->url);
+		$this->init($this->url);
 		curl_setopt($this->curl, CURLOPT_POST, true);
 		curl_setopt($this->curl, CURLOPT_POSTFIELDS, $data);
 		$this->process();
+		$this->close();
 	}
 
 	public function doPut($id, $data)
 	{
-		$this->curl = curl_init($this->url . $id);
+		$this->init($this->url . '/' . $id);
 		curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, 'PUT');
 		curl_setopt($this->curl, CURLOPT_POSTFIELDS, $data);
 		curl_setopt($this->curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($data)));
 		$this->process();
+		$this->close();
 	}
 
-	public function doRemove($id)
+	public function doDelete($id)
 	{
-		$this->curl = curl_init($this->url . $id);
+		$this->init($this->url . '/' . $id);
 		curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, 'DELETE');
 		$this->process();
+		$this->close();
+	}
+
+	private function init($url)
+	{
+		$this->curl = curl_init($url);
 	}
 
 	private function process()
@@ -68,9 +76,19 @@ class CURL
 		$this->info = curl_getinfo($this->curl);
 	}
 
-	public function closeCurl()
+	public function close()
 	{
 		curl_close($this->curl);
+	}
+
+	public function getInfo()
+	{
+		return $this->info;
+	}
+
+	public function getOriginalResult()
+	{
+		return $this->result;
 	}
 
 	public function getResult()
@@ -78,13 +96,19 @@ class CURL
 		return json_decode($this->result);
 	}
 
+	public function getResultSuccess()
+	{
+		return $this->getResult()->success;
+	}
+
+	public function getResultMessage()
+	{
+		return $this->getResult()->message;
+	}
+
 	public function getResultData()
 	{
 		return $this->getResult()->data;
 	}
 
-	public function getInfo()
-	{
-		return $this->info;
-	}
 }

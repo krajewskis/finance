@@ -32,12 +32,16 @@ class OwnerControllerTest extends PHPUnit_Framework_TestCase
 	const PASSWORD = 'PASSWORD';
 	const PASSWORD_ANOTHER = 'PASSWORD_ANOTHER';
 
-	const URL = 'http://localhost/finance/ws/?/owner/';
+	const URL = 'http://localhost/finance/ws/?/owner';
 
 	public function setUp()
 	{
 		$this->db = DB::getInstance();
 		$this->curl = new CURL(self::URL);
+		$this->db->query('
+			DELETE FROM owner;
+			ALTER SEQUENCE owner_id_seq RESTART 1;
+		');
 	}
 
 	public function testCRUD()
@@ -54,7 +58,7 @@ class OwnerControllerTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals(self::ID, $data->id);
 		$this->assertEquals(self::EMAIL, $data->email);
-		$this->assertEquals(null, $data->password);
+		$this->assertNull($data->password);
 
 
 		$this->curl->doGetId(self::ID);
@@ -63,7 +67,7 @@ class OwnerControllerTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals(self::ID, $data->id);
 		$this->assertEquals(self::EMAIL, $data->email);
-		$this->assertEquals(null, $data->password);
+		$this->assertNull($data->password);
 
 
 		$dto->setId(self::ID);
@@ -76,18 +80,18 @@ class OwnerControllerTest extends PHPUnit_Framework_TestCase
 		$data = $this->curl->getResultData();
 		$this->assertEquals(self::ID, $data->id);
 		$this->assertEquals(self::EMAIL_ANOTHER, $data->email);
-		$this->assertEquals(null, $data->password);
+		$this->assertNull($data->password);
 
 
-		$this->curl->doRemove(self::ID);
+		$this->curl->doDelete(self::ID);
 
 		$this->curl->doGetId(self::ID);
 
 		$data = $this->curl->getResultData();
 
-		$this->assertEquals(null, $data->id);
-		$this->assertEquals(null, $data->email);
-		$this->assertEquals(null, $data->password);
+		$this->assertNull($data->id);
+		$this->assertNull($data->email);
+		$this->assertNull($data->password);
 	}
 
 	public function tearDown()
@@ -96,6 +100,5 @@ class OwnerControllerTest extends PHPUnit_Framework_TestCase
 			DELETE FROM owner;
 			ALTER SEQUENCE owner_id_seq RESTART 1;
 		');
-		$this->curl->closeCurl();
 	}
 }
